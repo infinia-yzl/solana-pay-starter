@@ -4,10 +4,12 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import HeadComponent from '../components/Head';
 import Product from '../components/Product';
+import CreateProduct from "../components/CreateProduct";
 
 const App = () => {
   // This will fetch the users' public key (wallet address) from any wallet we support
   const { publicKey } = useWallet();
+  const isOwner = ( publicKey ? publicKey.toString() === process.env.NEXT_PUBLIC_OWNER_PUBLIC_KEY : false );
 
   interface Product {
     id: number;
@@ -19,6 +21,7 @@ const App = () => {
     hash: string;
   }
   const [products, setProducts] = useState<[Product] | []>([]);
+  const [creating, setCreating] = useState(false);
 
   useEffect(() => {
     if (publicKey) {
@@ -56,9 +59,16 @@ const App = () => {
         <header className="header-container">
           <p className="header"> 😳 Infinia's Images Store ⚡</p>
           <p className="sub-text">じゃんけんぽん</p>
+
+          {isOwner && (
+            <button className="create-product-button" onClick={() => setCreating(!creating)}>
+              {creating ? "Close" : "Create Product"}
+            </button>
+          )}
         </header>
 
         <main>
+          {creating && <CreateProduct />}
           {publicKey ? renderItemBuyContainer() : renderNotConnectedContainer()}
         </main>
 

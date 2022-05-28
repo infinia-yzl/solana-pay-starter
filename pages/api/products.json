@@ -7,5 +7,14 @@
     "image_url": "https://i.imgur.com/DJVWpvu.jpg",
     "filename": "Killua_Shy.png",
     "hash": "QmTiwrNF3WMnwaH4nXs7n915vqk2PNHuAwCpA4ehEcPEVR"
+  },
+  {
+    "id": 2,
+    "name": "Killua Happy",
+    "price": "0.69",
+    "image_url": "https://i.imgur.com/6jcN4n7.jpg",
+    "description": "Killua is happy to see you!",
+    "filename": "killua-wink.jpg",
+    "hash": "QmVHoaw9f7NCQ3VHFmSxa1NhKRHdJ3QeTkz57YCgegNx3E"
   }
 ]
