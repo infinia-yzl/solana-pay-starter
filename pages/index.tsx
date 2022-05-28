@@ -8,7 +8,17 @@ import Product from '../components/Product';
 const App = () => {
   // This will fetch the users' public key (wallet address) from any wallet we support
   const { publicKey } = useWallet();
-  const [products, setProducts] = useState([]);
+
+  interface Product {
+    id: number;
+    name: string;
+    price: string;
+    description: string;
+    image_url: string;
+    filename: string;
+    hash: string;
+  }
+  const [products, setProducts] = useState<[Product] | []>([]);
 
   useEffect(() => {
     if (publicKey) {
@@ -44,7 +54,7 @@ const App = () => {
       <HeadComponent/>
       <div className="container">
         <header className="header-container">
-          <p className="header"> 😳 Infinia Emoji Store ⚡</p>
+          <p className="header"> 😳 Infinia's Images Store ⚡</p>
           <p className="sub-text">じゃんけんぽん</p>
         </header>
 

@@ -14,7 +14,10 @@ const usdcAddress = new PublicKey("Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr"
 const sellerAddress = '9YdKh6ixK2pyCPyeKckSDMKbCh4KkmSPmHCeBTapcHhh'
 const sellerPublicKey = new PublicKey(sellerAddress);
 
-const createTransaction = async (req: { method?: "POST" | "GET"; body: { buyer: string, orderID: string, itemID: number }; }, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { message?: string; transaction?: string; error?: string; }): void; new(): any; }; }; }) => {
+const createTransaction = async (
+  req: { method?: "POST" | "GET"; body: { buyer: string, orderID: string, itemID: number }; },
+  res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { message?: string; transaction?: string; amount?: number; error?: string; }): void; new(): any; }; }; }
+) => {
   try {
     // Extract the transaction data from the request body
     const { buyer, orderID, itemID } = req.body;
@@ -99,6 +102,7 @@ const createTransaction = async (req: { method?: "POST" | "GET"; body: { buyer: 
 
     res.status(200).json({
       transaction: base64,
+      amount,
       message: `Amount: ${amount}`,
     });
   } catch (error) {
